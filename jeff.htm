@@ -8,7 +8,7 @@
   <body>
 	
     <div id="hello-world-app">
-      <h1>{{ msg }}</h1>
+      <h1>{{ ObtenirMessage() }}</h1>
     </div>
 
     <script
@@ -20,7 +20,17 @@
         el: "#hello-world-app",
         data() {
           return {
-            msg: "Hello World!"
+            msg: "Hello World! jeff",
+            nombre:1
+          }
+        },
+        method:{
+
+          incrementer(){
+            this.nombre = this.nombre+1;
+          },
+          obtenirMessage(){
+return this.msg + nombre;
           }
         }
       });
