@@ -1,0 +1,43 @@
+<div id="app">{{ reverseMessage() }}
+
+    <button @click=incrementerBouton>ajouter 1</button>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module">
+      import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+    
+      createApp({
+        data() {
+          return {
+            message: 'Hello Vue!',
+          nombre:0,
+          }
+        },
+        methods: {
+        reverseMessage() {
+          return this.message + this.nombre;
+        },
+        incrementerBouton() {
+          this.nombre = this.nombre + 1;
+          axios.get(
+            'https://reqres.in/api/products/' + this.nombre)
+                        .then(response => {
+     
+                            // JSON responses are
+                            // automatically parsed
+                            this.message =  response.data.data.name;
+                        })
+     
+                        // Dealing with errors
+                        .catch(error => {
+                            console.log(error)
+                            this.errored = true
+                        })
+    
+        }
+      }
+    
+      }).mount('#app')
+    </script>
+    
+    
